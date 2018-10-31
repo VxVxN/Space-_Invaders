@@ -1,3 +1,3 @@
-﻿  stdafx.cpp
-  SpaceInvaders.cpp
+﻿  Player.cpp
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\player.cpp(29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
   SpaceInvaders.vcxproj -> C:\Users\Владимир\Desktop\SpaceInvaders\Debug\SpaceInvaders.exe
