@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <list>
 
 #include "IÑharacter.h"
 
@@ -20,20 +20,30 @@ public:
 	virtual unsigned int  getHeight() const override final;
 
 	void setSpeedMovement(float speed);
+	void setSpeedBullet(float speed);
+	void setTimeReloadSeconds(float speed);
 
 	void draw(RenderWindow &window, float &time);
 
 private:
 	enum class StateObject { LEFT, RIGHT };
 
-	float _health;
 	StateObject _state;
+	float _health;
 	float _speed;
 	float _windowsWidth, _windowsHeidht;
+	float _timeReload;
+	float _speedBullet;
+	float _speedReload;
+
+	std::list<sf::CircleShape> _listBullet;
+	RenderWindow * _window;
 
 	void update(float time);
 
 	void control(float time); 
+	void shoot();
+	void updateBullets();
 
 	void setHealth(float health);
 	float getHealth() const;

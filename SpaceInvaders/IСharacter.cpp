@@ -109,5 +109,5 @@ bool IÑharacter::getLife() const
 
 void IÑharacter::setTextureRect(float x, float y, float width, float height)
 {
-	getSprite().setTextureRect(IntRect(x, y, width, height));
+	getSprite().setTextureRect(IntRect((int)x, (int)y, (int)width, (int)height));
 }

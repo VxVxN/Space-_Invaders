@@ -8,7 +8,9 @@ Player::Player(const String &strFile, float x, float y, float width, float heigh
 	setHeight((unsigned int)height);
 
 	setSpeed(0.0);
-	_speed = 0.1f;
+	setSpeedMovement(0.2f);
+	setSpeedBullet(0.5f);
+	setTimeReloadSeconds(0.5f);
 
 	setLife(true);
 	setHealth(100);
@@ -21,6 +23,8 @@ Player::Player(const String &strFile, float x, float y, float width, float heigh
 
 	_windowsWidth = windowsWidth;
 	_windowsHeidht = windowsHeidht;
+
+	_timeReload = 0;
 
 	imageLoadFromFile(strFile);
 	getTexture().loadFromImage(getImage());
@@ -55,14 +59,25 @@ void Player::setSpeedMovement(float speed)
 	_speed = speed;
 }
 
+void Player::setSpeedBullet(float speed)
+{
+	_speedBullet = speed;
+}
+
+void Player::setTimeReloadSeconds(float speed)
+{
+	_speedReload = speed;
+}
+
 void Player::draw(RenderWindow & window, float & time)
 {
+	_window = &window;
 	this->update(time);
 	window.draw(getSprite());
 }
 
 
-/////////////private//////////
+/////////////////////////////private////////////////////////////
 
 void Player::update(float time)
 {
@@ -82,6 +97,10 @@ void Player::update(float time)
 	if (getHealth() <= 0) {
 		setLife(false);
 	}
+
+	updateBullets();
+
+	_timeReload += time / 1000;
 }
 
 void Player::control(float time)
@@ -93,12 +112,38 @@ void Player::control(float time)
 			setState(StateObject::LEFT);
 			setSpeed(_speed);
 		}
-		else if (((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D))) && !isCollisionRight)) {
+		if (((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D))) && !isCollisionRight)) {
 			setState(StateObject::RIGHT);
 			setSpeed(_speed);
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Space)) {
-			//shoot();
+		if (Keyboard::isKeyPressed(Keyboard::Space)) {
+			shoot();
+		}
+	}
+}
+
+void Player::shoot()
+{
+	if (_timeReload > _speedReload) {
+		CircleShape bullet(3.f);
+		bullet.setFillColor(sf::Color::Red);
+		bullet.setPosition(getX() + (getWidth() / 2) - 1.5f, getY());
+		_listBullet.push_back(bullet);
+		_timeReload = 0;
+	}
+}
+
+void Player::updateBullets()
+{
+	for (auto & bullet : _listBullet) {   //move bullet
+		bullet.setPosition(bullet.getPosition().x, bullet.getPosition().y - _speedBullet);
+		_window->draw(bullet);
+	}
+
+	for (std::list<CircleShape>::iterator it = _listBullet.begin(); it != _listBullet.end(); it++) {   // delete bullet
+		if (it->getPosition().y < 0) {
+			_listBullet.erase(it);
+			break;
 		}
 	}
 }
