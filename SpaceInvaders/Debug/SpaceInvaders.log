@@ -1,6 +1,11 @@
-﻿  SpaceInvaders.cpp
-c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(18): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(23): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
-c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(24): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
-c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(30): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+﻿  Enemy.cpp
+  Player.cpp
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\player.cpp(33): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+  SpaceInvaders.cpp
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(27): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(28): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(42): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(52): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\spaceinvaders.cpp(65): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Создание кода...
   SpaceInvaders.vcxproj -> C:\Users\Владимир\Desktop\SpaceInvaders\Debug\SpaceInvaders.exe

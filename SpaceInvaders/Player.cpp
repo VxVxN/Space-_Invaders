@@ -2,7 +2,7 @@
 #include "Player.h"
 
 
-Player::Player(const String &strFile, float x, float y, float width, float height, float windowsWidth, float windowsHeidht) {
+Player::Player(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht) {
 	setFile(strFile);
 	setWidth((unsigned int)width);
 	setHeight((unsigned int)height);
@@ -33,11 +33,6 @@ Player::Player(const String &strFile, float x, float y, float width, float heigh
 	getSprite().setTextureRect(IntRect(x, y + getHeight(), getWidth(), -(float)getHeight()));
 }
 
-Sprite& Player::getSprite()
-{
-	return sprite;
-}
-
 void Player::setPosition(float x, float y)
 {
 	setX(x);
@@ -46,12 +41,12 @@ void Player::setPosition(float x, float y)
 
 unsigned int Player::getWidth() const
 {
-	return IÑharacter::getWidth();
+	return ICharacter::getWidth();
 }
 
 unsigned int Player::getHeight() const
 {
-	return IÑharacter::getHeight();
+	return ICharacter::getHeight();
 }
 
 void Player::setSpeedMovement(float speed)

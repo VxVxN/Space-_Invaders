@@ -2,17 +2,15 @@
 
 #include <list>
 
-#include "IÑharacter.h"
+#include "ICharacter.h"
 
 using namespace sf;
 
-class Player : private IÑharacter
+class Player : private ICharacter
 {
 public:
 	Player() = delete;
-	Player(const String &strFile, float x, float y, float width, float height, float windowsWidth, float windowsHeidht);
-
-	virtual Sprite & getSprite() override final;
+	Player(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
 	void setPosition(float x, float y);
 
@@ -31,7 +29,7 @@ private:
 	StateObject _state;
 	float _health;
 	float _speed;
-	float _windowsWidth, _windowsHeidht;
+	unsigned int _windowsWidth, _windowsHeidht;
 	float _timeReload;
 	float _speedBullet;
 	float _speedReload;
