@@ -123,24 +123,30 @@ void Player::shoot()
 		CircleShape bullet(3.f);
 		bullet.setFillColor(sf::Color::Red);
 		bullet.setPosition(getX() + (getWidth() / 2) - 1.5f, getY());
-		_listBullet.push_back(bullet);
+		_bullets.push_back(bullet);
 		_timeReload = 0;
 	}
 }
 
 void Player::updateBullets()
 {
-	for (auto & bullet : _listBullet) {   //move bullet
+	for (auto & bullet : _bullets) {   //move bullet
 		bullet.setPosition(bullet.getPosition().x, bullet.getPosition().y - _speedBullet);
 		_window->draw(bullet);
 	}
 
-	for (std::list<CircleShape>::iterator it = _listBullet.begin(); it != _listBullet.end(); it++) {   // delete bullet
+	for (std::list<CircleShape>::iterator it = _bullets.begin(); it != _bullets.end(); it++) {   // delete bullet
 		if (it->getPosition().y < 0) {
-			_listBullet.erase(it);
+			_bullets.erase(it);
 			break;
 		}
 	}
+}
+
+void Player::die()
+{
+	getSprite().setColor(sf::Color::Red);
+	setLife(false);
 }
 
 void Player::setHealth(float health)

@@ -3,12 +3,17 @@
 #include <list>
 
 #include "ICharacter.h"
+#include "Collision.h"
 
 using namespace sf;
+
+class Collision;
 
 class Player : private ICharacter
 {
 public:
+	friend Collision;
+
 	Player() = delete;
 	Player(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
@@ -34,7 +39,7 @@ private:
 	float _speedBullet;
 	float _speedReload;
 
-	std::list<sf::CircleShape> _listBullet;
+	std::list<sf::CircleShape> _bullets;
 	RenderWindow * _window;
 
 	void update(float time);
@@ -42,6 +47,7 @@ private:
 	void control(float time); 
 	void shoot();
 	void updateBullets();
+	void die();
 
 	void setHealth(float health);
 	float getHealth() const;

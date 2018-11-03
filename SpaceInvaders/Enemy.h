@@ -1,10 +1,15 @@
 #pragma once
 
 #include "ICharacter.h"
+#include "Collision.h"
+
+class Collision;
 
 class Enemy : private ICharacter
 {
 public:
+	friend Collision;
+
 	Enemy() = delete;
 	Enemy(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
