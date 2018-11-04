@@ -1,4 +1,8 @@
 ﻿  Collision.cpp
   Enemy.cpp
+  Player.cpp
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\player.cpp(46): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+c:\users\владимир\desktop\spaceinvaders\spaceinvaders\player.cpp(178): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+  SpaceInvaders.cpp
   Создание кода...
   SpaceInvaders.vcxproj -> C:\Users\Владимир\Desktop\SpaceInvaders\Debug\SpaceInvaders.exe

@@ -26,6 +26,19 @@ Player::Player(const String &strFile, float x, float y, float width, float heigh
 
 	_timeReload = 0;
 
+	_score = 0;
+
+	_font.loadFromFile("CyrilicOld.TTF");
+	_textTopPanel.setFont(_font);
+	_textTopPanel.setCharacterSize(20);
+	_textTopPanel.setColor(Color::Red);
+	_textTopPanel.setStyle(sf::Text::Bold);
+
+	_textGameOver.setFont(_font);
+	_textGameOver.setCharacterSize(40);
+	_textGameOver.setColor(Color::Red);
+	_textGameOver.setStyle(sf::Text::Bold);
+
 	imageLoadFromFile(strFile);
 	getTexture().loadFromImage(getImage());
 
@@ -69,6 +82,16 @@ void Player::draw(RenderWindow & window, float & time)
 	_window = &window;
 	this->update(time);
 	window.draw(getSprite());
+	window.draw(_textTopPanel);
+	window.draw(_textGameOver);
+}
+
+bool Player::isPlayerLost()
+{
+	if (getHealth() < 0) 
+		return true;
+	else 
+		return false;
 }
 
 
@@ -89,8 +112,11 @@ void Player::update(float time)
 	setSpeed(0);
 	getSprite().setPosition(getX(), getY());
 
+	_textTopPanel.setString("Здоровье: " + std::to_wstring((int)_health) + "\n" + "Очки: " + std::to_wstring(_score));
+	_textTopPanel.setPosition(10, 10);
+
 	if (getHealth() <= 0) {
-		setLife(false);
+		die();
 	}
 
 	updateBullets();
@@ -130,7 +156,7 @@ void Player::shoot()
 
 void Player::updateBullets()
 {
-	for (auto & bullet : _bullets) {   //move bullet
+	for (auto & bullet : _bullets) {															 //move bullet
 		bullet.setPosition(bullet.getPosition().x, bullet.getPosition().y - _speedBullet);
 		_window->draw(bullet);
 	}
@@ -147,6 +173,9 @@ void Player::die()
 {
 	getSprite().setColor(sf::Color::Red);
 	setLife(false);
+
+	_textGameOver.setString("Игра закончена.");
+	_textGameOver.setPosition(_windowsWidth / 2 - 120, _windowsHeidht / 2 - 30);
 }
 
 void Player::setHealth(float health)

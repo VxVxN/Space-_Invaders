@@ -21,6 +21,7 @@ void Collision::update(float time)
 			bool isShotY = ((itEnemy->getY() + itEnemy->getHeight()) > itBullet->getPosition().y) && (itEnemy->getY() < itBullet->getPosition().y);
 			if (isShotX && isShotY && itEnemy->getLife()) {
 				itEnemy->die();
+				_player->_score += 10;
 				_player->_bullets.erase(itBullet);
 				return;
 			}
@@ -29,7 +30,7 @@ void Collision::update(float time)
 		bool isHitX = ((itEnemy->getX() + itEnemy->getWidth()) > _player->getX()) && (itEnemy->getX() < (_player->getX() + _player->getWidth()));    // enemy hited player
 		bool isHitY = ((itEnemy->getY() + itEnemy->getHeight()) > _player->getY()) && (itEnemy->getY() < (_player->getY() + _player->getWidth()));
 		if (isHitX && isHitY && itEnemy->getLife()) {
-			_player->die();
+			_player->_health -= 10;
 			_enemies->erase(itEnemy);
 			return;
 		}
@@ -38,7 +39,7 @@ void Collision::update(float time)
 			bool isShotX = ((_player->getX() + _player->getWidth()) > itBullet->getPosition().x) && (_player->getX() < itBullet->getPosition().x);
 			bool isShotY = ((_player->getY() + _player->getHeight()) > itBullet->getPosition().y) && (_player->getY() < itBullet->getPosition().y);
 			if (isShotX && isShotY) {
-				_player->die();
+				_player->_health -= 20;
 				itEnemy->_bullets.erase(itBullet);
 				return;
 			}

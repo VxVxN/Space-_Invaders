@@ -79,7 +79,7 @@ void Enemy::update(float time)
 void Enemy::shoot()
 {
 	if (getLife()) {
-		if (_timeReload > 1.0f) {
+		if (_timeReload > 2.0f) {
 			CircleShape bullet(3.f);
 			bullet.setFillColor(sf::Color::Blue);
 			bullet.setPosition(getX() + (getWidth() / 2) - 1.5f, getY());

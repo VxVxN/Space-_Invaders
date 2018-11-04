@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <sstream>
 
 #include "ICharacter.h"
 #include "Collision.h"
@@ -28,10 +29,16 @@ public:
 
 	void draw(RenderWindow &window, float &time);
 
+	bool isPlayerLost();
+
 private:
 	enum class StateObject { LEFT, RIGHT };
 
+	Text _textTopPanel;
+	Text _textGameOver;
+	Font _font;
 	StateObject _state;
+	int _score;
 	float _health;
 	float _speed;
 	unsigned int _windowsWidth, _windowsHeidht;
