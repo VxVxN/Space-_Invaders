@@ -14,6 +14,7 @@ public:
 
 	Sprite & getSprite();
 	virtual void update(float time) = 0;
+	virtual void die() = 0;
 
 	void setFile(const String &strFile);
 	const String getFile() const;

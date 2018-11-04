@@ -19,6 +19,8 @@ Enemy::Enemy(const String &strFile, float x, float y, float width, float height,
 	setDY(0);
 	setDX(0);
 
+	_timeReload = 0;
+
 	_windowsWidth = windowsWidth;
 	_windowsHeidht = windowsHeidht;
 
@@ -68,4 +70,39 @@ void Enemy::update(float time)
 	setY(getY() + getDY() * time);
 
 	getSprite().setPosition(getX(), getY());
+
+	_timeReload += time / 1000;
+
+	shoot();
+}
+
+void Enemy::shoot()
+{
+	if (getLife()) {
+		if (_timeReload > 1.0f) {
+			CircleShape bullet(3.f);
+			bullet.setFillColor(sf::Color::Blue);
+			bullet.setPosition(getX() + (getWidth() / 2) - 1.5f, getY());
+			_bullets.push_back(bullet);
+			_timeReload = 0;
+		}
+	}
+
+	for (auto & bullet : _bullets) {                                                             //move bullet
+		bullet.setPosition(bullet.getPosition().x, bullet.getPosition().y + 0.2f);
+		_window->draw(bullet);
+	}
+
+	for (std::list<CircleShape>::iterator it = _bullets.begin(); it != _bullets.end(); it++) {   // delete bullet
+		if (it->getPosition().y > _windowsHeidht) {
+			_bullets.erase(it);
+			break;
+		}
+	}
+}
+
+void Enemy::die()
+{
+	getSprite().setColor(sf::Color(255, 255, 255, 0));
+	setLife(false);
 }

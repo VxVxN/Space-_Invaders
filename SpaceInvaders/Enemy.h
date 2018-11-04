@@ -22,10 +22,14 @@ public:
 private:
 	bool _isReadyTurn;
 	float _speed;
+	float _timeReload;
 	unsigned int _windowsWidth, _windowsHeidht;
 
+	std::list<sf::CircleShape> _bullets;
 	RenderWindow * _window;
 
 	void update(float time);
+	void shoot();
+	void die() override final;
 };
 

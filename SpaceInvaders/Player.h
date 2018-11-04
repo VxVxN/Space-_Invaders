@@ -47,7 +47,7 @@ private:
 	void control(float time); 
 	void shoot();
 	void updateBullets();
-	void die();
+	void die() override final;
 
 	void setHealth(float health);
 	float getHealth() const;
