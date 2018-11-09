@@ -88,7 +88,7 @@ void Player::draw(RenderWindow & window, float & time)
 
 bool Player::isPlayerLost()
 {
-	if (getHealth() < 0) 
+	if (!getLife()) 
 		return true;
 	else 
 		return false;

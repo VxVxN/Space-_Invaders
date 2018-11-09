@@ -14,14 +14,15 @@ public:
 	Enemy(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
 	void setPosition(float x, float y);
+	void setSpeedMovement(float speed);
 
 	void draw(RenderWindow &window, float &time);
 
-	void moveZigzag(float borderLeft, float borderRight);
+	void moveZigzag(unsigned int borderLeft, unsigned int borderRight);
+	void movePointToPoint(float toPointX, float toPointY);
 
 private:
 	bool _isReadyTurn;
-	float _speed;
 	float _timeReload;
 	unsigned int _windowsWidth, _windowsHeidht;
 

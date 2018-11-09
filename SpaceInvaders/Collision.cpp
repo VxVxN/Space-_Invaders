@@ -30,7 +30,7 @@ void Collision::update(float time)
 		bool isHitX = ((itEnemy->getX() + itEnemy->getWidth()) > _player->getX()) && (itEnemy->getX() < (_player->getX() + _player->getWidth()));    // enemy hited player
 		bool isHitY = ((itEnemy->getY() + itEnemy->getHeight()) > _player->getY()) && (itEnemy->getY() < (_player->getY() + _player->getWidth()));
 		if (isHitX && isHitY && itEnemy->getLife()) {
-			_player->_health -= 10;
+			_player->_health -= 20;
 			_enemies->erase(itEnemy);
 			return;
 		}
@@ -45,9 +45,10 @@ void Collision::update(float time)
 			}
 		}
 
-		if ((itEnemy->getY() + itEnemy->getHeight()) > itEnemy->_windowsHeidht) {
+		if ((itEnemy->getY() + itEnemy->getHeight()) > itEnemy->_windowsHeidht || itEnemy->getLife() == false) {
 			_enemies->erase(itEnemy);
 			break;
 		}
 	}
+
 }

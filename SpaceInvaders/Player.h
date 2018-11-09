@@ -20,8 +20,8 @@ public:
 
 	void setPosition(float x, float y);
 
-	virtual unsigned int  getWidth() const override final;
-	virtual unsigned int  getHeight() const override final;
+	virtual unsigned int getWidth() const override final;
+	virtual unsigned int getHeight() const override final;
 
 	void setSpeedMovement(float speed);
 	void setSpeedBullet(float speed);

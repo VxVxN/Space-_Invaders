@@ -37,6 +37,14 @@ void Enemy::setPosition(float x, float y)
 	setY(y);
 }
 
+void Enemy::setSpeedMovement(float speed)
+{
+	setSpeed(speed);
+
+	setDX(getSpeed());
+	setDY(getSpeed());
+}
+
 void Enemy::draw(RenderWindow & window, float & time)
 {
 	_window = &window;
@@ -44,7 +52,7 @@ void Enemy::draw(RenderWindow & window, float & time)
 	window.draw(getSprite());
 }
 
-void Enemy::moveZigzag(float borderLeft, float borderRight)
+void Enemy::moveZigzag(unsigned int borderLeft, unsigned int borderRight)
 {
 	setDY(getSpeed());
 	if (getX() < borderRight && _isReadyTurn) {
@@ -61,18 +69,41 @@ void Enemy::moveZigzag(float borderLeft, float borderRight)
 	}
 }
 
+void Enemy::movePointToPoint(float toPointX, float toPointY)
+{
+	if (getX() < toPointX) {
+		if ((toPointX - getX()) <= (toPointY - getY()))
+			setDX(getSpeed());
+		else 
+			setDX(getSpeed() / 0.7f);
+	}
+	if (getX() > toPointX) {
+		if ((toPointX - getX()) >= (toPointY - getY()))
+			setDX(-getSpeed());
+		else
+			setDX(-getSpeed() / 0.7f);
+	}
+	if (getY() < toPointY) setDY(getSpeed());
+	if (getY() > toPointY) setDY(-getSpeed());
+
+	if ((abs(toPointX - getX())) < 1 && (abs(toPointY - getY())) < 1) {
+		die();
+	}
+}
+
 
 /////////////////////////////private////////////////////////////
 
 void Enemy::update(float time)
 {
-	setX(getX() + getDX() * time);
-	setY(getY() + getDY() * time);
+	if (getLife() == true) {
+		setX(getX() + getDX() * time);
+		setY(getY() + getDY() * time);
 
-	getSprite().setPosition(getX(), getY());
+		getSprite().setPosition(getX(), getY());
 
-	_timeReload += time / 1000;
-
+		_timeReload += time / 1000;
+	}
 	shoot();
 }
 
