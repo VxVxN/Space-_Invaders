@@ -37,14 +37,6 @@ void Enemy::setPosition(float x, float y)
 	setY(y);
 }
 
-void Enemy::setSpeedMovement(float speed)
-{
-	setSpeed(speed);
-
-	setDX(getSpeed());
-	setDY(getSpeed());
-}
-
 void Enemy::draw(RenderWindow & window, float & time)
 {
 	_window = &window;

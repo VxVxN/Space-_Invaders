@@ -52,16 +52,6 @@ void Player::setPosition(float x, float y)
 	setY(y);
 }
 
-unsigned int Player::getWidth() const
-{
-	return ICharacter::getWidth();
-}
-
-unsigned int Player::getHeight() const
-{
-	return ICharacter::getHeight();
-}
-
 void Player::setSpeedMovement(float speed)
 {
 	_speed = speed;

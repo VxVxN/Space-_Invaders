@@ -2,36 +2,6 @@
 #include "ICharacter.h"
 
 
-Sprite & ICharacter::getSprite()
-{
-	return sprite;
-}
-
-void ICharacter::setFile(const String &strFile)
-{
-	_nameFileSprite = strFile;
-}
-
-const String ICharacter::getFile() const
-{
-	return _nameFileSprite;
-}
-
-void ICharacter::imageLoadFromFile(const String &strFile)
-{
-	_image.loadFromFile(strFile);
-}
-
-Image ICharacter::getImage() const
-{
-	return _image;
-};
-
-Texture & ICharacter::getTexture()
-{
-	return _texture;
-}
-
 void ICharacter::setX(float x)
 {
 	_x = x;
@@ -115,4 +85,36 @@ bool ICharacter::getLife() const
 void ICharacter::setTextureRect(float x, float y, float width, float height)
 {
 	getSprite().setTextureRect(IntRect((int)x, (int)y, (int)width, (int)height));
+}
+
+/////////////////////////////protected/////////////////////////
+
+Sprite & ICharacter::getSprite()
+{
+	return sprite;
+}
+
+void ICharacter::setFile(const String &strFile)
+{
+	_nameFileSprite = strFile;
+}
+
+const String ICharacter::getFile() const
+{
+	return _nameFileSprite;
+}
+
+void ICharacter::imageLoadFromFile(const String &strFile)
+{
+	_image.loadFromFile(strFile);
+}
+
+Image ICharacter::getImage() const
+{
+	return _image;
+};
+
+Texture & ICharacter::getTexture()
+{
+	return _texture;
 }

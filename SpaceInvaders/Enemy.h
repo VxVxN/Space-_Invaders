@@ -5,7 +5,7 @@
 
 class Collision;
 
-class Enemy : private ICharacter
+class Enemy : public ICharacter
 {
 public:
 	friend Collision;
@@ -14,7 +14,6 @@ public:
 	Enemy(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
 	void setPosition(float x, float y);
-	void setSpeedMovement(float speed);
 
 	void draw(RenderWindow &window, float &time);
 
@@ -29,7 +28,7 @@ private:
 	std::list<sf::CircleShape> _bullets;
 	RenderWindow * _window;
 
-	void update(float time);
+	void update(float time) override final;
 	void shoot();
 	void die() override final;
 };

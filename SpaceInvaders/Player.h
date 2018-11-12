@@ -10,7 +10,7 @@ using namespace sf;
 
 class Collision;
 
-class Player : private ICharacter
+class Player : public ICharacter
 {
 public:
 	friend Collision;
@@ -19,9 +19,6 @@ public:
 	Player(const String &strFile, float x, float y, float width, float height, unsigned int windowsWidth, unsigned int windowsHeidht);
 
 	void setPosition(float x, float y);
-
-	virtual unsigned int getWidth() const override final;
-	virtual unsigned int getHeight() const override final;
 
 	void setSpeedMovement(float speed);
 	void setSpeedBullet(float speed);
@@ -49,7 +46,7 @@ private:
 	std::list<sf::CircleShape> _bullets;
 	RenderWindow * _window;
 
-	void update(float time);
+	void update(float time) override final;
 
 	void control(float time); 
 	void shoot();
